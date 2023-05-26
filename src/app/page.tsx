@@ -27,7 +27,7 @@ export default function Home() {
     });
   };
 
-  let todoList: any = <p>No TODO</p>;
+  let todoList: React.JSX.Element = <p>No TODO</p>;
 
   if (todos.length > 0) {
     todoList = <TodoList items={todos} onDeleteItem={deleteTodoHandler} />;

@@ -2,8 +2,6 @@
 
 import React, { useState } from "react";
 import { Button } from "./UI/Button";
-import { MethodSignature } from "typescript";
-import { HtmlProps } from "next/dist/shared/lib/html-context";
 
 export const TodoForm: React.FC<{ onAddTodo: (text: string) => void }> = (
   props
@@ -17,13 +15,7 @@ export const TodoForm: React.FC<{ onAddTodo: (text: string) => void }> = (
   const itemHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(todo);
-
-    // const newTodo = {
-    //   id: Math.floor(Math.random() * 1000),
-    //   text: todo,
-    // };
     props.onAddTodo(todo);
-
     setTodo("");
   };
 
