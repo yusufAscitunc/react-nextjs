@@ -12,17 +12,24 @@ const getUserData = async () => {
   return users;
 };
 
+const getCountryData = async () => {
+  const res = await fetch("https://restcountries.com/v3.1/region/europe");
+  const countries = await res.json();
+  return countries;
+};
+const country = getCountryData();
+const posts = getData();
+const users = getUserData();
+
 const Page = async () => {
-  const [posts, users] = await Promise.all([getData(), getUserData()]);
+  //const [posts, users] = await Promise.all([getData(), getUserData()]);
+
+  const resData = await Promise.all([country, posts, users]);
+  console.log(resData);
 
   return (
     <>
-      {posts.map((post: any) => (
-        <div key={post.id}>{post.title}</div>
-      ))}
-      {users.map((user: any) => (
-        <div key={user.id}>{user.name}</div>
-      ))}
+      <pre>{JSON.stringify(resData, null, 2)}</pre>
     </>
   );
 };
