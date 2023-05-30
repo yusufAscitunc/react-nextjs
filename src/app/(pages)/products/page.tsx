@@ -1,21 +1,23 @@
 import React from "react";
 
 const getData = async () => {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-  const posts = await res.json();
-  return posts;
+  return fetch("https://jsonplaceholder.typicode.com/posts").then((res) =>
+    res.json()
+  );
 };
 
 const getUserData = async () => {
-  const res = await fetch("https://jsonplaceholder.typicode.com/users");
-  const users = await res.json();
-  return users;
+  return fetch("https://jsonplaceholder.typicode.com/users", {
+    next: {
+      revalidate: 10,
+    },
+  }).then((res) => res.json());
 };
 
 const getCountryData = async () => {
-  const res = await fetch("https://restcountries.com/v3.1/region/europe");
-  const countries = await res.json();
-  return countries;
+  return fetch("https://restcountries.com/v3.1/region/europe", {
+    cache: "no-store",
+  }).then((res) => res.json());
 };
 const country = getCountryData();
 const posts = getData();
